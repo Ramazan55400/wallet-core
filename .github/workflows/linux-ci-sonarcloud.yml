@@ -9,16 +9,16 @@ on:
 jobs:
   build:
     if: github.event.pull_request.head.repo.fork == false
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install system dependencies
         run: |
           # build-essential clang-14 libc++-dev libc++abi-dev ruby-full cmake
           sudo apt-get update && sudo apt-get install ninja-build lcov llvm-14 clang-tidy-14 libboost-all-dev --fix-missing
       - name: Cache internal dependencies
         id: internal_cache
-        uses: actions/cache@v1.1.2
+        uses: actions/cache@v3
         with:
           path: build/local
           key: ${{ runner.os }}-internal-${{ hashFiles('tools/install-dependencies') }}
