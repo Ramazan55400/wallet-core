@@ -3,9 +3,9 @@ plugins {
 }
 
 group = "com.trustwallet"
-
-// For local builds only. For release builds explicitly specify -Pversion
-version = "0.0.0-alpha"
+if (version == Project.DEFAULT_VERSION) {
+    version = "0.0.0-alpha"
+}
 
 publishing {
     repositories {
